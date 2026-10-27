@@ -1,0 +1,16 @@
+BETHEL OPEN BIBLE CHURCH — FLUTTER REBUILD
+
+This is a NEW Flutter app source project.
+
+If you want an APK without setting up Flutter locally:
+  Upload this project to GitHub (including the .github folder).
+  Open Actions > Build Bethel Android APK > Run workflow.
+  Download the built APK artifact from the completed workflow.
+
+If you have Flutter and Android Studio on Windows:
+  Double-click BUILD_ANDROID_APK_WINDOWS.bat.
+
+There is NO APK in this ZIP yet; the Android SDK isn't available in this chat environment.
+Do not substitute the older experimental WebView APK.
+
+Read README.md for detailed steps and the feature list.

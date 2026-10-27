@@ -1,0 +1,38 @@
+name: Build Bethel Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  android:
+    name: Compile Flutter APK
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+      - name: Flutter version
+        run: flutter --version
+      - name: Generate native Android platform
+        run: flutter create --platforms=android --org org.bethelopenbible --project-name bethel_open_bible_church .
+      - name: Install packages
+        run: flutter pub get
+      - name: Set app display name and launcher icon
+        run: |
+          dart run tool/configure_android.dart
+          dart run flutter_launcher_icons
+      - name: Compile APK
+        run: flutter build apk --release
+      - name: Upload installable APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Bethel-Open-Bible-Church-Flutter-APK
+          path: build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+          retention-days: 14
